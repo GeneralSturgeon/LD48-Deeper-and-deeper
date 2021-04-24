@@ -12,6 +12,13 @@ public class PlayerController : MonoBehaviour
     public float speed;
     [SerializeField]
     private Rigidbody rb;
+    public LayerMask mask;
+    private Vector3 hitPos;
+    public Transform projectileSpawn;
+    public GameObject projectile;
+    public float projectileForce;
+    public GameObject beam;
+    private GameObject currentBeam;
 
     void Update()
     {
@@ -23,6 +30,26 @@ public class PlayerController : MonoBehaviour
         } else
         {
             speedbreak = 1f;
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            Fire();
+        }
+
+        if(Input.GetMouseButtonDown(1))
+        {
+            InitializeBeam();
+        }
+
+        if(Input.GetMouseButton(1))
+        {
+            UpdateBeam();
+        }
+
+        if(Input.GetMouseButtonUp(1))
+        {
+            DestroyBeam();
         }
     }
 
@@ -38,5 +65,81 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Hit wall");
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("SpawnTriggerBox"))
+        {
+            other.GetComponent<SpawnTriggerBox>().SpawnNext();
+            Debug.Log("Spawned");
+        }
+
+        if (other.gameObject.CompareTag("SpawnDestroyBox"))
+        {
+            other.GetComponent<SpawnDestroyBox>().DestroyChunk();
+            Debug.Log("Destroyed");
+        }
+    }
+
+    private void Fire()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100f, mask))
+        {
+            hitPos = hit.point;
+        }
+
+        var proj = Instantiate(projectile, transform.position, Quaternion.identity);
+        //proj.transform.LookAt(hitPos);
+        var dir = (hitPos - proj.transform.position).normalized;
+        proj.GetComponent<Rigidbody>().AddForce(dir * projectileForce);
+        Destroy(proj.gameObject, 2f);
+
+    }
+
+    private void InitializeBeam()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 20f, mask))
+        {
+            hitPos = hit.point;
+        }
+
+        currentBeam = Instantiate(beam, projectileSpawn.position, Quaternion.identity);
+        currentBeam.GetComponent<LineRenderer>().SetPosition(0, projectileSpawn.position);
+        currentBeam.GetComponent<LineRenderer>().SetPosition(1, hitPos);
+
+    }
+
+    private void UpdateBeam()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 20f, mask))
+        {
+            hitPos = hit.point;
+        }
+
+        if(currentBeam != null)
+        {
+            currentBeam.GetComponent<LineRenderer>().SetPosition(0, projectileSpawn.position);
+            currentBeam.GetComponent<LineRenderer>().SetPosition(1, hitPos);
+        }
+        
+    }
+
+    private void DestroyBeam()
+    {
+        if(currentBeam != null)
+        {
+            Destroy(currentBeam);
+        }
+        
     }
 }

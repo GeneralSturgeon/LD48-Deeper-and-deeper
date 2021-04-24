@@ -11,10 +11,15 @@ public class Wall : MonoBehaviour
     [Range(5f, 25f)]
     public float colorShiftRange = 12f;
 
-    private void Start()
+    private void Awake()
     {
         origColor = rend.color;
+        rend.color = farColor;
+    }
 
+    private void Start()
+    {
+        
         if(FindObjectOfType<PlayerController>() != null)
         {
             player = FindObjectOfType<PlayerController>().transform;
