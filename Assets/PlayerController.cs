@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float kickbackForce = 50f;
     public int fireEnergyCost = 1;
+    public float beamEnergyCost = 1.2f;
     [SerializeField]
     private Rigidbody rb;
     [SerializeField]
@@ -23,52 +24,82 @@ public class PlayerController : MonoBehaviour
     public float projectileForce;
     public GameObject beam;
     private GameObject currentBeam;
-    private const int damageFromWall = 6;
+    private const int damageFromWall = 3;
     public GameObject beamCollider;
     private GameObject currentBeamCollider;
+    private bool isAlive = true;
 
+    private void Awake()
+    {
+        speedbreak = 1f;
+    }
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
-        if(Input.GetKey(KeyCode.Space))
+        if(isAlive)
         {
-            speedbreak = breakAmount;
-        } else
-        {
-            speedbreak = 1f;
-        }
-
-        if(Input.GetMouseButtonDown(0))
-        {
-            if(GameController.instance.currentEnergy >= fireEnergyCost)
+            horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                GameController.instance.UseEnergy(fireEnergyCost);
-                Fire();
+                speedbreak = breakAmount;
+                GameController.instance.energyRegen = 0f;
             }
-            
-        }
 
-        if(Input.GetMouseButtonDown(1))
-        {
-            InitializeBeam();
-        }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                speedbreak = 1f;
+                if(currentBeam == null)
+                {
+                    GameController.instance.energyRegen = 0.05f;
+                }
+                
+            }
 
-        if(Input.GetMouseButton(1))
-        {
-            UpdateBeam();
-        }
 
-        if(Input.GetMouseButtonUp(1))
-        {
-            DestroyBeam();
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (GameController.instance.currentEnergy >= fireEnergyCost)
+                {
+                    GameController.instance.UseEnergy(fireEnergyCost);
+                    Fire();
+                }
+
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                if (GameController.instance.currentEnergy >= beamEnergyCost)
+                {
+                    InitializeBeam();
+                    GameController.instance.energyRegen = 0f;
+                }
+            }
+
+            if (Input.GetMouseButton(1))
+            {
+                if (GameController.instance.currentEnergy >= beamEnergyCost * Time.deltaTime)
+                {
+                    UpdateBeam();
+                } else
+                {
+                    DestroyBeam();
+                }
+                
+            }
+
+            if (Input.GetMouseButtonUp(1))
+            {
+                DestroyBeam();
+            }
         }
+        
     }
 
     private void FixedUpdate()
     {
         var dir = ((new Vector3(horizontal, 0f, 0f) + new Vector3(0f, vertical, 0f)) * sideSpeed + new Vector3(0f, 0f, speed * speedbreak)) * Time.fixedDeltaTime;
         rb.AddForce(dir);
+        Debug.Log(speedbreak);
     }
 
 
@@ -150,8 +181,12 @@ public class PlayerController : MonoBehaviour
             currentBeam.GetComponent<LineRenderer>().SetPosition(1, hitPos);
         }
 
-        currentBeamCollider.GetComponent<Rigidbody>().MovePosition(hitPos);
-        
+        if(currentBeamCollider != null)
+        {
+            currentBeamCollider.GetComponent<Rigidbody>().MovePosition(hitPos);
+        }
+
+        GameController.instance.UseEnergy(beamEnergyCost);
     }
 
     private void DestroyBeam()
@@ -165,6 +200,19 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(currentBeamCollider, 0.1f);
         }
+
+        if(!Input.GetKey(KeyCode.Space))
+        {
+            GameController.instance.energyRegen = 0.05f;
+        }
         
+    }
+
+    public void Death()
+    {
+        isAlive = false;
+        rb.useGravity = true;
+        speed /= 4;
+        rb.AddTorque(20f, 0f, 0f);
     }
 }

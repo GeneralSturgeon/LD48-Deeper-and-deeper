@@ -84,7 +84,7 @@ public class GameController : MonoBehaviour
 
     private void Death()
     {
-        Debug.Log("You died");
+        FindObjectOfType<PlayerController>().Death();
     }
 
     private void FixedUpdate()

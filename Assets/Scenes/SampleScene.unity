@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 24
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 24
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1802,6 +1802,7 @@ MonoBehaviour:
   speed: 1000
   kickbackForce: 200
   fireEnergyCost: 1
+  beamEnergyCost: 0.02
   rb: {fileID: 1996256272}
   col: {fileID: 1996256271}
   mask:
@@ -1846,14 +1847,14 @@ MonoBehaviour:
   maxHealth: 24
   maxEnergy: 24
   currentEnergy: 0
-  energyRegen: 1
+  energyRegen: 0.05
   energySlider: {fileID: 571535377}
   healthSlider: {fileID: 917915883}
   moneyText: {fileID: 1946456295}
   distanceText: {fileID: 1500261625}
   distance: 0
   currentMoney: 0
-  updateTime: 0.5
+  updateTime: 0.05
 --- !u!4 &2119261049
 Transform:
   m_ObjectHideFlags: 0
