@@ -115,13 +115,12 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.CompareTag("SpawnTriggerBox"))
         {
             other.GetComponent<SpawnTriggerBox>().SpawnNext();
-            Debug.Log("Spawned");
+            speed += 5f;
         }
 
         if (other.gameObject.CompareTag("SpawnDestroyBox"))
         {
             other.GetComponent<SpawnDestroyBox>().DestroyChunk();
-            Debug.Log("Destroyed");
         }
 
         if (other.gameObject.CompareTag("Wall"))
