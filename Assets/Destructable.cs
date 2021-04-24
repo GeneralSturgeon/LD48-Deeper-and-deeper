@@ -10,7 +10,6 @@ public class Destructable : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Projectile"))
         {
-            Destroy(collision.gameObject);
             health--;
             if(health <= 0)
             {

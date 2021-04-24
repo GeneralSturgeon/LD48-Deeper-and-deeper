@@ -85,6 +85,7 @@ public class GameController : MonoBehaviour
     private void Death()
     {
         FindObjectOfType<PlayerController>().Death();
+        FindObjectOfType<PanelController>().Fade();
     }
 
     private void FixedUpdate()

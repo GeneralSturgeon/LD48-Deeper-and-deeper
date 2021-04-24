@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rend: {fileID: 3207274686976643489}
   farColor: {r: 0, g: 0, b: 0, a: 1}
-  colorShiftRange: 15
+  colorShiftRange: 17
 --- !u!114 &4237856773490238067
 MonoBehaviour:
   m_ObjectHideFlags: 0

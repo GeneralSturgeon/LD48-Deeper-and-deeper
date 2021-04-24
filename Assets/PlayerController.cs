@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public float sideSpeed;
     public float speed;
     public float kickbackForce = 50f;
-    public int fireEnergyCost = 1;
+    public float fireEnergyCost = 1;
     public float beamEnergyCost = 1.2f;
     [SerializeField]
     private Rigidbody rb;
