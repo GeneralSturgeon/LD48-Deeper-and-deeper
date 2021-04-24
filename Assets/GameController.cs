@@ -24,6 +24,11 @@ public class GameController : MonoBehaviour
     private float tick = 0f;
     public float updateTime = 0.2f;
 
+    public Animator screenAnim;
+    public TextMeshProUGUI interactionText;
+    public bool tutorialOn = true;
+    private int tutorialTicks = 0;
+
     private void Awake()
     {
         if (instance != null)
@@ -41,6 +46,10 @@ public class GameController : MonoBehaviour
         Random.InitState(Mathf.FloorToInt(Time.realtimeSinceStartup));
     }
 
+    private void Start()
+    {
+        InitTutorial();
+    }
 
     public void TakeDamage(int dmg)
     {
@@ -130,6 +139,62 @@ public class GameController : MonoBehaviour
     private void OnTick()
     {
         RegainEnergy(energyRegen);
+        if(tutorialOn)
+        {
+            tutorialTicks++;
+            if(tutorialTicks == 100)
+            {
+                interactionText.text = TextHolder.instance.GetTutorialString(1);
+            }
+
+            if (tutorialTicks == 200)
+            {
+                interactionText.text = TextHolder.instance.GetTutorialString(2);
+            }
+
+            if (tutorialTicks == 300)
+            {
+                interactionText.text = TextHolder.instance.GetTutorialString(3);
+            }
+
+            if (tutorialTicks == 400)
+            {
+                interactionText.text = TextHolder.instance.GetTutorialString(4);
+            }
+
+            if (tutorialTicks == 500)
+            {
+                interactionText.text = TextHolder.instance.GetTutorialString(5);
+            }
+
+            if (tutorialTicks == 600)
+            {
+                interactionText.text = TextHolder.instance.GetTutorialString(6);
+            }
+
+            if(tutorialTicks == 700)
+            {
+                screenAnim.SetBool("enabled", false);
+            }
+
+            if (tutorialTicks == 900)
+            {
+                screenAnim.SetBool("enabled", true);
+                interactionText.text = TextHolder.instance.GetTutorialString(7);
+            }
+
+            if (tutorialTicks == 1000)
+            {
+                interactionText.text = TextHolder.instance.GetTutorialString(8);
+            }
+
+            if (tutorialTicks == 1100)
+            {
+                screenAnim.SetBool("enabled", false);
+            }
+        }
+        
+        
     }
 
     public void AddMoney(float money)
@@ -137,6 +202,19 @@ public class GameController : MonoBehaviour
         currentMoney += money;
         var moneyInt = (int)currentMoney;
         moneyText.text = string.Format("{0:00000000}", moneyInt) + "$";
+    }
+
+    private void InitTutorial()
+    {
+        screenAnim.SetBool("enabled", true);
+
+        if(tutorialOn)
+        {
+            interactionText.text = TextHolder.instance.GetTutorialString(0);
+        } else
+        {
+            interactionText.text = TextHolder.instance.GetTutorialString(0);
+        }
     }
 }
 

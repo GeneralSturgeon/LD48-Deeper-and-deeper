@@ -9,6 +9,7 @@ TagManager:
   - SpawnDestroyBox
   - Projectile
   - BeamCollider
+  - TutorialSpeedUp
   layers:
   - Default
   - TransparentFX

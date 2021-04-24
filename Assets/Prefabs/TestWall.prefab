@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5457826297880360750}
   - component: {fileID: 5457826297880360745}
+  - component: {fileID: 8428876370404483719}
   - component: {fileID: -6747947693721540035}
   - component: {fileID: 5651858170778618642}
   - component: {fileID: -2058173005068966881}
   - component: {fileID: 2793703315527499043}
-  - component: {fileID: 8428876370404483719}
   - component: {fileID: 264676557789705320}
   - component: {fileID: 7983542185414655119}
   - component: {fileID: 8958151606605731817}
@@ -99,6 +99,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8428876370404483719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457826297880360744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0583f70464a83524296dd2fe9473a12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacles:
+  - {fileID: 5637295384946365880, guid: 1d54e6f2f7548e0438d5d6031a282ae1, type: 3}
+  - {fileID: 5637295384946365880, guid: eca483d1cfb68f248a07acf9041bcfdc, type: 3}
+  - {fileID: 5637295384946365880, guid: 1b019ab64ddceea46883eed80e2370cb, type: 3}
+  - {fileID: 5637295384946365880, guid: 054ba4d16e659cd4eac2f69ebdfbb8b4, type: 3}
+  gold: {fileID: 1938008387041584127, guid: 20eec4d49b6ea734cbc8ab5eb5276518, type: 3}
+  amethyst: {fileID: 1938008387041584127, guid: 0e470376466100947aca3dae600bcfac,
+    type: 3}
+  diamond: {fileID: 1938008387041584127, guid: f390f463f5b78f04b888ed746395965d, type: 3}
 --- !u!65 &-6747947693721540035
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -151,24 +172,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.9074283, y: 6.0258827, z: 0.5}
   m_Center: {x: -2.4787145, y: 1.0129414, z: 0}
---- !u!114 &8428876370404483719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5457826297880360744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0583f70464a83524296dd2fe9473a12b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstacles:
-  - {fileID: 5637295384946365880, guid: 1d54e6f2f7548e0438d5d6031a282ae1, type: 3}
-  - {fileID: 5637295384946365880, guid: eca483d1cfb68f248a07acf9041bcfdc, type: 3}
-  - {fileID: 5637295384946365880, guid: 1b019ab64ddceea46883eed80e2370cb, type: 3}
-  - {fileID: 5637295384946365880, guid: 054ba4d16e659cd4eac2f69ebdfbb8b4, type: 3}
-  gold: {fileID: 1938008387041584127, guid: 20eec4d49b6ea734cbc8ab5eb5276518, type: 3}
 --- !u!114 &264676557789705320
 MonoBehaviour:
   m_ObjectHideFlags: 0

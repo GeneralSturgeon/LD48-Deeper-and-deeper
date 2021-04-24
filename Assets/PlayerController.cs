@@ -29,9 +29,16 @@ public class PlayerController : MonoBehaviour
     private GameObject currentBeamCollider;
     private bool isAlive = true;
 
-    private void Awake()
+    private void Start()
     {
-        speedbreak = 1f;
+        if (GameController.instance.tutorialOn)
+        {
+            speedbreak = 0.1f;
+        }
+        else
+        {
+            speedbreak = 1f;
+        }
     }
     void Update()
     {
@@ -127,6 +134,11 @@ public class PlayerController : MonoBehaviour
             {
                 other.gameObject.GetComponent<Destructable>().Hit();
             }
+        }
+
+        if(other.gameObject.CompareTag("TutorialSpeedUp"))
+        {
+            speedbreak = 1f;
         }
     }
 

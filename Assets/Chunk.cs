@@ -39,7 +39,18 @@ public class Chunk : MonoBehaviour
             {
                 newWall.GetComponent<Wall>().SpawnGold();
             }
-            
+
+            if (Random.Range(0, 100) + GameController.instance.distance / 4 > 100)
+            {
+                newWall.GetComponent<Wall>().SpawnAmethyst();
+            }
+
+            if (Random.Range(0, 100) + GameController.instance.distance / 4 > 105)
+            {
+                newWall.GetComponent<Wall>().SpawnDiamond();
+            }
+
+
         }
 
         var triggerBox = Instantiate(spawnTriggerBox, transform.position + new Vector3(0f, 0f, spacing * number/4), Quaternion.identity);
