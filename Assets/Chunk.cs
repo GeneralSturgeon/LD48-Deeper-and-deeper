@@ -34,6 +34,7 @@ public class Chunk : MonoBehaviour
         {
             var newWall = Instantiate(wallPrefab, transform.position + new Vector3(Random.Range(-maxRandomOffset, maxRandomOffset), Random.Range(-maxRandomOffset, maxRandomOffset), spacing * x), Quaternion.identity);
             newWall.transform.SetParent(transform);
+            newWall.GetComponent<Wall>().SpawnObstacle();
         }
 
         var triggerBox = Instantiate(spawnTriggerBox, transform.position + new Vector3(0f, 0f, spacing * number/4), Quaternion.identity);

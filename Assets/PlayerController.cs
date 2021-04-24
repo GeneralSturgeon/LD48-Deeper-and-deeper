@@ -10,8 +10,12 @@ public class PlayerController : MonoBehaviour
     public float breakAmount = 0.5f;
     public float sideSpeed;
     public float speed;
+    public float kickbackForce = 50f;
+    public int fireEnergyCost = 1;
     [SerializeField]
     private Rigidbody rb;
+    [SerializeField]
+    private SphereCollider col;
     public LayerMask mask;
     private Vector3 hitPos;
     public Transform projectileSpawn;
@@ -19,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public float projectileForce;
     public GameObject beam;
     private GameObject currentBeam;
+    private const int damageFromWall = 6;
 
     void Update()
     {
@@ -34,7 +39,12 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
-            Fire();
+            if(GameController.instance.currentEnergy >= fireEnergyCost)
+            {
+                GameController.instance.UseEnergy(fireEnergyCost);
+                Fire();
+            }
+            
         }
 
         if(Input.GetMouseButtonDown(1))
@@ -59,13 +69,6 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(dir);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Wall"))
-        {
-            Debug.Log("Hit wall");
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -79,6 +82,15 @@ public class PlayerController : MonoBehaviour
         {
             other.GetComponent<SpawnDestroyBox>().DestroyChunk();
             Debug.Log("Destroyed");
+        }
+
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            var dir = new Vector3(0f, 0f, transform.position.z - 1f) - transform.position;
+            rb.AddForce(dir * kickbackForce);
+            CameraShake.instance.Shake(0.2f, 0.04f, 1f);
+            GameController.instance.TakeDamage(damageFromWall);
+
         }
     }
 
@@ -97,6 +109,7 @@ public class PlayerController : MonoBehaviour
         var dir = (hitPos - proj.transform.position).normalized;
         proj.GetComponent<Rigidbody>().AddForce(dir * projectileForce);
         Destroy(proj.gameObject, 2f);
+        CameraShake.instance.Shake(0.1f, 0.02f, 1f);
 
     }
 
