@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI distanceText;
     public float distance = 0f;
+    public float currentMoney = 0f;
 
     private float tick = 0f;
     public float updateTime = 0.2f;
@@ -128,6 +129,13 @@ public class GameController : MonoBehaviour
     private void OnTick()
     {
         RegainEnergy(energyRegen);
+    }
+
+    public void AddMoney(float money)
+    {
+        currentMoney += money;
+        var moneyInt = (int)currentMoney;
+        moneyText.text = string.Format("{0:00000000}", moneyInt) + "$";
     }
 }
 

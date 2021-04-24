@@ -5,6 +5,7 @@ using UnityEngine;
 public class Wall : MonoBehaviour
 {
     public GameObject[] obstacles;
+    public GameObject gold;
 
     public void SpawnObstacle()
     {
@@ -30,6 +31,15 @@ public class Wall : MonoBehaviour
         {
             Spawn();
         }
+    }
+
+    public void SpawnGold()
+    {
+        Vector3 point = (Random.insideUnitCircle).normalized;
+        var obst = Instantiate(gold, transform.position + point + new Vector3(0f, 0f, 0.1f), Quaternion.identity);
+        obst.transform.Rotate(new Vector3(0f, 0f, 90f + Mathf.Rad2Deg * Mathf.Atan2(0f - point.y, 0f - point.x)));
+        obst.transform.Translate(Vector3.up * 0.1f);
+        obst.transform.SetParent(transform);
     }
 
     private void Spawn()

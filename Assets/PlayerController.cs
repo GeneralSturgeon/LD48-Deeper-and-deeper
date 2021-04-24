@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public GameObject beam;
     private GameObject currentBeam;
     private const int damageFromWall = 6;
+    public GameObject beamCollider;
+    private GameObject currentBeamCollider;
 
     void Update()
     {
@@ -90,7 +92,10 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(dir * kickbackForce);
             CameraShake.instance.Shake(0.2f, 0.04f, 1f);
             GameController.instance.TakeDamage(damageFromWall);
-
+            if(other.gameObject.GetComponent<Destructable>() != null)
+            {
+                other.gameObject.GetComponent<Destructable>().Hit();
+            }
         }
     }
 
@@ -126,7 +131,7 @@ public class PlayerController : MonoBehaviour
         currentBeam = Instantiate(beam, projectileSpawn.position, Quaternion.identity);
         currentBeam.GetComponent<LineRenderer>().SetPosition(0, projectileSpawn.position);
         currentBeam.GetComponent<LineRenderer>().SetPosition(1, hitPos);
-
+        currentBeamCollider = Instantiate(beamCollider, hitPos, Quaternion.identity);
     }
 
     private void UpdateBeam()
@@ -144,6 +149,8 @@ public class PlayerController : MonoBehaviour
             currentBeam.GetComponent<LineRenderer>().SetPosition(0, projectileSpawn.position);
             currentBeam.GetComponent<LineRenderer>().SetPosition(1, hitPos);
         }
+
+        currentBeamCollider.GetComponent<Rigidbody>().MovePosition(hitPos);
         
     }
 
@@ -152,6 +159,11 @@ public class PlayerController : MonoBehaviour
         if(currentBeam != null)
         {
             Destroy(currentBeam);
+        }
+
+        if(currentBeamCollider != null)
+        {
+            Destroy(currentBeamCollider, 0.1f);
         }
         
     }

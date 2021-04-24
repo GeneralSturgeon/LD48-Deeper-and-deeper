@@ -10,6 +10,7 @@ public class Destructable : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Projectile"))
         {
+            Destroy(collision.gameObject);
             health--;
             if(health <= 0)
             {
@@ -23,5 +24,14 @@ public class Destructable : MonoBehaviour
         var ps = Instantiate(deathPS, transform.position, Quaternion.identity);
         Destroy(ps, 3f);
         Destroy(gameObject);
+    }
+
+    public void Hit()
+    {
+        health -= 3;
+        if (health <= 0)
+        {
+            Death();
+        }
     }
 }

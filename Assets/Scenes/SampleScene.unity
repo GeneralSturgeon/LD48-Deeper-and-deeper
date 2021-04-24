@@ -1800,7 +1800,7 @@ MonoBehaviour:
   breakAmount: 0.5
   sideSpeed: 1300
   speed: 1000
-  kickbackForce: 500
+  kickbackForce: 200
   fireEnergyCost: 1
   rb: {fileID: 1996256272}
   col: {fileID: 1996256271}
@@ -1812,6 +1812,8 @@ MonoBehaviour:
     type: 3}
   projectileForce: 150
   beam: {fileID: 577443776680971404, guid: cd8d39572baf3414ea74c6775f344eb7, type: 3}
+  beamCollider: {fileID: 131002850299791995, guid: 8652a2e8b65bb9d43bf020e90c1363dc,
+    type: 3}
 --- !u!1 &2119261047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1850,6 +1852,7 @@ MonoBehaviour:
   moneyText: {fileID: 1946456295}
   distanceText: {fileID: 1500261625}
   distance: 0
+  currentMoney: 0
   updateTime: 0.5
 --- !u!4 &2119261049
 Transform:

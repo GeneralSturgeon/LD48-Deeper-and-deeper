@@ -8,6 +8,7 @@ TagManager:
   - SpawnTriggerBox
   - SpawnDestroyBox
   - Projectile
+  - BeamCollider
   layers:
   - Default
   - TransparentFX
