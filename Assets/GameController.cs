@@ -12,14 +12,16 @@ public class GameController : MonoBehaviour
     public int maxEnergy = 24;
     private int currentHealth;
     [HideInInspector]
-    public int currentEnergy;
+    public float currentEnergy;
+    public float energyRegen = 1f;
     public Slider energySlider;
     public Slider healthSlider;
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI distanceText;
-    private float distance = 0f;
-    
+    public float distance = 0f;
 
+    private float tick = 0f;
+    public float updateTime = 0.2f;
 
     private void Awake()
     {
@@ -35,6 +37,7 @@ public class GameController : MonoBehaviour
 
         currentEnergy = maxEnergy;
         currentHealth = maxHealth;
+        Random.InitState(Mathf.FloorToInt(Time.realtimeSinceStartup));
     }
 
 
@@ -58,12 +61,22 @@ public class GameController : MonoBehaviour
         healthSlider.value = currentHealth;
     }
 
-    public void UseEnergy(int energy)
+    public void UseEnergy(float energy)
     {
         currentEnergy -= energy;
         if(currentEnergy < 0)
         {
             currentEnergy = 0;
+        }
+        energySlider.value = currentEnergy;
+    }
+
+    public void RegainEnergy(float energy)
+    {
+        currentEnergy += energy;
+        if (currentEnergy > maxEnergy)
+        {
+            currentEnergy = maxEnergy;
         }
         energySlider.value = currentEnergy;
     }
@@ -76,6 +89,14 @@ public class GameController : MonoBehaviour
     private void FixedUpdate()
     {
         UpdateDistanceText();
+
+        tick += Time.deltaTime;
+
+        if (tick > updateTime)
+        {
+            tick = 0;
+            OnTick();
+        }
     }
 
 
@@ -102,4 +123,12 @@ public class GameController : MonoBehaviour
         }
         
     }
+
+
+    private void OnTick()
+    {
+        RegainEnergy(energyRegen);
+    }
 }
+
+

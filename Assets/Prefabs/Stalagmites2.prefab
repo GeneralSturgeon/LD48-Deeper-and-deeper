@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 5637295384946365882}
   - component: {fileID: 5637295384946365881}
   - component: {fileID: -139357977755701717}
+  - component: {fileID: 1243850546004936829}
   m_Layer: 0
-  m_Name: Stalagmites
+  m_Name: Stalagmites2
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 643ce0c4e5e901842afb5f34d21cb2d8, type: 3}
+  m_Sprite: {fileID: 6431986612368594709, guid: 643ce0c4e5e901842afb5f34d21cb2d8,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,8 +96,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.38, z: 0.1}
-  m_Center: {x: 0, y: -0.18, z: 0}
+  m_Size: {x: 0.31, y: 0.32, z: 0.1}
+  m_Center: {x: 0.06, y: -0.18, z: 0}
 --- !u!114 &-139357977755701717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +113,17 @@ MonoBehaviour:
   rend: {fileID: 5637295384946365882}
   farColor: {r: 0, g: 0, b: 0, a: 1}
   colorShiftRange: 15
+--- !u!114 &1243850546004936829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5637295384946365880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bbebdae0d1bfef4ab4a2633123af258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  deathPS: {fileID: 61670583452838482, guid: 48aaa457bdf1b224b8dec9bf6e93eae7, type: 3}

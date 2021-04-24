@@ -151,8 +151,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0583f70464a83524296dd2fe9473a12b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 5637295384946365880, guid: 1d54e6f2f7548e0438d5d6031a282ae1,
-    type: 3}
+  obstacles:
+  - {fileID: 5637295384946365880, guid: 1d54e6f2f7548e0438d5d6031a282ae1, type: 3}
+  - {fileID: 5637295384946365880, guid: eca483d1cfb68f248a07acf9041bcfdc, type: 3}
+  - {fileID: 5637295384946365880, guid: 1b019ab64ddceea46883eed80e2370cb, type: 3}
+  - {fileID: 5637295384946365880, guid: 054ba4d16e659cd4eac2f69ebdfbb8b4, type: 3}
 --- !u!114 &264676557789705320
 MonoBehaviour:
   m_ObjectHideFlags: 0

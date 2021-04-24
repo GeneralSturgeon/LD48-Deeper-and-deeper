@@ -1844,10 +1844,13 @@ MonoBehaviour:
   maxHealth: 24
   maxEnergy: 24
   currentEnergy: 0
+  energyRegen: 1
   energySlider: {fileID: 571535377}
   healthSlider: {fileID: 917915883}
   moneyText: {fileID: 1946456295}
   distanceText: {fileID: 1500261625}
+  distance: 0
+  updateTime: 0.5
 --- !u!4 &2119261049
 Transform:
   m_ObjectHideFlags: 0
