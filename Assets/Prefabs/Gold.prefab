@@ -125,5 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0110b37805fe5e4f991884e7c93e063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addLife: 0
+  addMoney: 1
+  addEnergy: 0
   minePS: {fileID: 7909289510828463264, guid: 385210c87d7f9924ba6923fb6451e82f, type: 3}
   moneyToAdd: 40
+  lifeToAdd: 0
+  energyToAdd: 0

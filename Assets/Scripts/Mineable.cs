@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Mineable : MonoBehaviour
 {
+    public bool addLife;
+    public bool addMoney;
+    public bool addEnergy;
     public GameObject minePS;
     public float moneyToAdd = 10f;
+    public float lifeToAdd = 10f;
+    public float energyToAdd = 10f;
     private GameObject currentPS;
 
     private void OnTriggerEnter(Collider other)
@@ -21,7 +26,21 @@ public class Mineable : MonoBehaviour
     {
         if (other.gameObject.CompareTag("BeamCollider"))
         {
-            GameController.instance.AddMoney(moneyToAdd * Time.deltaTime);
+            if(addMoney)
+            {
+                GameController.instance.AddMoney(moneyToAdd * Time.deltaTime);
+            }
+
+            if (addEnergy)
+            {
+                GameController.instance.RegainEnergy(moneyToAdd * Time.deltaTime);
+            }
+
+            if (addLife)
+            {
+                GameController.instance.Heal(moneyToAdd * Time.deltaTime);
+            }
+
         }
     }
 

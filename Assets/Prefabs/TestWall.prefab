@@ -120,6 +120,10 @@ MonoBehaviour:
   amethyst: {fileID: 1938008387041584127, guid: 0e470376466100947aca3dae600bcfac,
     type: 3}
   diamond: {fileID: 1938008387041584127, guid: f390f463f5b78f04b888ed746395965d, type: 3}
+  redMineral: {fileID: 1938008387041584127, guid: 60ca608511f5a93429b5004df594014f,
+    type: 3}
+  greenMineral: {fileID: 1938008387041584127, guid: dbb50e7bafa3c9840b0c575326d9b070,
+    type: 3}
 --- !u!65 &-6747947693721540035
 BoxCollider:
   m_ObjectHideFlags: 0

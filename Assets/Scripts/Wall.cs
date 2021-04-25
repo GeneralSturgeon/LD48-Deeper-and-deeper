@@ -8,6 +8,8 @@ public class Wall : MonoBehaviour
     public GameObject gold;
     public GameObject amethyst;
     public GameObject diamond;
+    public GameObject redMineral;
+    public GameObject greenMineral;
 
     public void SpawnObstacle()
     {
@@ -57,6 +59,24 @@ public class Wall : MonoBehaviour
     {
         Vector3 point = (Random.insideUnitCircle).normalized;
         var obst = Instantiate(diamond, transform.position + point + new Vector3(0f, 0f, 0.1f), Quaternion.identity);
+        obst.transform.Rotate(new Vector3(0f, 0f, 90f + Mathf.Rad2Deg * Mathf.Atan2(0f - point.y, 0f - point.x)));
+        obst.transform.Translate(Vector3.up * 0.1f);
+        obst.transform.SetParent(transform);
+    }
+
+    public void SpawnRedMineral()
+    {
+        Vector3 point = (Random.insideUnitCircle).normalized;
+        var obst = Instantiate(redMineral, transform.position + point + new Vector3(0f, 0f, 0.1f), Quaternion.identity);
+        obst.transform.Rotate(new Vector3(0f, 0f, 90f + Mathf.Rad2Deg * Mathf.Atan2(0f - point.y, 0f - point.x)));
+        obst.transform.Translate(Vector3.up * 0.1f);
+        obst.transform.SetParent(transform);
+    }
+
+    public void SpawnGreenMineral()
+    {
+        Vector3 point = (Random.insideUnitCircle).normalized;
+        var obst = Instantiate(greenMineral, transform.position + point + new Vector3(0f, 0f, 0.1f), Quaternion.identity);
         obst.transform.Rotate(new Vector3(0f, 0f, 90f + Mathf.Rad2Deg * Mathf.Atan2(0f - point.y, 0f - point.x)));
         obst.transform.Translate(Vector3.up * 0.1f);
         obst.transform.SetParent(transform);

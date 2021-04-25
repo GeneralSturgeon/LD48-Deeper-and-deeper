@@ -50,6 +50,17 @@ public class Chunk : MonoBehaviour
                 newWall.GetComponent<Wall>().SpawnDiamond();
             }
 
+            if (Random.Range(0, 100) > 92)
+            {
+                newWall.GetComponent<Wall>().SpawnRedMineral();
+            }
+
+            if (Random.Range(0, 100) > 90)
+            {
+                newWall.GetComponent<Wall>().SpawnGreenMineral();
+            }
+
+
 
         }
 

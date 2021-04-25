@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5637295384946365882}
   - component: {fileID: 5637295384946365881}
   - component: {fileID: -139357977755701717}
-  - component: {fileID: 3530122483166178194}
+  - component: {fileID: 3289518577969940948}
   m_Layer: 0
   m_Name: Stalagmites3
   m_TagString: Wall
@@ -113,7 +113,7 @@ MonoBehaviour:
   rend: {fileID: 5637295384946365882}
   farColor: {r: 0, g: 0, b: 0, a: 1}
   colorShiftRange: 17
---- !u!114 &3530122483166178194
+--- !u!114 &3289518577969940948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,3 +127,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   deathPS: {fileID: 61670583452838482, guid: 48aaa457bdf1b224b8dec9bf6e93eae7, type: 3}
+  drops:
+  - {fileID: 1892268619781946317, guid: 85c08039ca3df3c43b2e3455203bddf9, type: 3}
+  - {fileID: 1892268619781946317, guid: dea1eac846d740440bc33f0fdcdfdc01, type: 3}
+  - {fileID: 1892268619781946317, guid: 232f0ace1b2c4bc43add1a3e9ae7d844, type: 3}
+  - {fileID: 1892268619781946317, guid: c8b3b09cf55c39d4b8a940f0f7e48c0e, type: 3}
+  - {fileID: 1892268619781946317, guid: 381b697f20c6ce7468b008137a763a6a, type: 3}

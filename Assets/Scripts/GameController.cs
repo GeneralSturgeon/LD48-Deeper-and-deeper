@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 
     public int maxHealth = 24;
     public int maxEnergy = 24;
-    private int currentHealth;
+    private float currentHealth;
     [HideInInspector]
     public float currentEnergy;
     public float energyRegen = 1f;
@@ -61,7 +61,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void Heal (int heal)
+    public void Heal (float heal)
     {
         currentHealth += heal;
         if(currentHealth > maxHealth)

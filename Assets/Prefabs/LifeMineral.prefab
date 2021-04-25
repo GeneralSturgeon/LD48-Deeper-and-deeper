@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4874272453204699059}
   - component: {fileID: 4237856773490238067}
   m_Layer: 0
-  m_Name: Diamond
+  m_Name: LifeMineral
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3210125440294574982, guid: 35ca62357f7e7a5498e61c11f6ded24b,
+  m_Sprite: {fileID: -5463477405278030400, guid: 35ca62357f7e7a5498e61c11f6ded24b,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -125,10 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0110b37805fe5e4f991884e7c93e063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addLife: 0
+  addLife: 1
   addMoney: 1
   addEnergy: 0
   minePS: {fileID: 7909289510828463264, guid: 385210c87d7f9924ba6923fb6451e82f, type: 3}
-  moneyToAdd: 2000
-  lifeToAdd: 0
+  moneyToAdd: 20
+  lifeToAdd: 5
   energyToAdd: 0
