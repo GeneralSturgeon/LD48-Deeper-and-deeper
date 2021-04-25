@@ -130,7 +130,7 @@ MonoBehaviour:
   addLife: 0
   addMoney: 1
   addEnergy: 0
-  moneyToAdd: 250
+  moneyToAdd: 350
   lifeToAdd: 0
   energyToAdd: 0
   pickupSound: {fileID: 6692078026222380214}

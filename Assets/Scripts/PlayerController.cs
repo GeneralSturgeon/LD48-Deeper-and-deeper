@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource beamSound;
     public AudioSource noEnergySound;
     public AudioSource crashSound;
+    public AudioSource retroBoosterSound;
 
     private void Start()
     {
@@ -54,12 +55,22 @@ public class PlayerController : MonoBehaviour
             {
                 speedbreak = breakAmount;
                 GameController.instance.energyRegen = 0f;
+                retroBoosterSound.pitch = 0.8f;
+                retroBoosterSound.Play();
+
+            }
+
+            if(Input.GetKey(KeyCode.Space))
+            {
+                CameraShake.instance.Shake(0.1f, 0.02f, 1f);
             }
 
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 speedbreak = 1f;
-                if(currentBeam == null)
+                retroBoosterSound.pitch = 1.2f;
+                retroBoosterSound.Play();
+                if (currentBeam == null)
                 {
                     GameController.instance.energyRegen = 0.05f;
                 }

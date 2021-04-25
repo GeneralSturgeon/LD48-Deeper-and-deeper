@@ -839,10 +839,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930f03868fa815546ab87383a79bb4c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lenght: 5
+  lenght: 7
   panel: {fileID: 76770654}
   moneyText: {fileID: 900930964}
   distanceText: {fileID: 1819900719}
+  breadText: {fileID: 2131462682}
 --- !u!1 &1716527157
 GameObject:
   m_ObjectHideFlags: 0

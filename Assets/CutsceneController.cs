@@ -12,6 +12,8 @@ public class CutsceneController : MonoBehaviour
 
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI distanceText;
+    public TextMeshProUGUI breadText;
+    public int moneyNeeded = 100000;
 
     private void Update()
     {
@@ -28,5 +30,9 @@ public class CutsceneController : MonoBehaviour
         var moneyInt = (int)Manager.instance.money;
         moneyText.text = "Income: " + moneyInt.ToString() + "$";
         distanceText.text = "Depth: " + TextHolder.instance.FormatDistance(Manager.instance.distance) + "km";
+        if(moneyInt > moneyNeeded)
+        {
+            breadText.text = "Well done, Ensign! But you can always do better!";
+        }
     }
 }

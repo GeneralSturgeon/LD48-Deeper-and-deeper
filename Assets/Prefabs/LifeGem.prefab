@@ -130,8 +130,8 @@ MonoBehaviour:
   addLife: 1
   addMoney: 1
   addEnergy: 0
-  moneyToAdd: 50
-  lifeToAdd: 5
+  moneyToAdd: 200
+  lifeToAdd: 8
   energyToAdd: 0
   pickupSound: {fileID: 4138282008525778137}
   coll: {fileID: 8561072525878154511}

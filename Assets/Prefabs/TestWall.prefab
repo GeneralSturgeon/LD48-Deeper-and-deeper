@@ -116,6 +116,8 @@ MonoBehaviour:
   - {fileID: 5637295384946365880, guid: eca483d1cfb68f248a07acf9041bcfdc, type: 3}
   - {fileID: 5637295384946365880, guid: 1b019ab64ddceea46883eed80e2370cb, type: 3}
   - {fileID: 5637295384946365880, guid: 054ba4d16e659cd4eac2f69ebdfbb8b4, type: 3}
+  - {fileID: 5637295384946365880, guid: a4d0e029becc08c4e85cc57e890b06da, type: 3}
+  - {fileID: 5637295384946365880, guid: 9e1c39da52f93974b82b531fdda4fb83, type: 3}
   gold: {fileID: 1938008387041584127, guid: 20eec4d49b6ea734cbc8ab5eb5276518, type: 3}
   amethyst: {fileID: 1938008387041584127, guid: 0e470376466100947aca3dae600bcfac,
     type: 3}

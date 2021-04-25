@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rend: {fileID: 3207274686976643489}
   farColor: {r: 0, g: 0, b: 0, a: 1}
-  colorShiftRange: 17
+  colorShiftRange: 20
 --- !u!114 &4237856773490238067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   addEnergy: 0
   minePS: {fileID: 7909289510828463264, guid: 385210c87d7f9924ba6923fb6451e82f, type: 3}
   moneyToAdd: 20
-  lifeToAdd: 5
+  lifeToAdd: 1
   energyToAdd: 0
   beamHitSound: {fileID: 5351929197666911380}
 --- !u!82 &5351929197666911380
