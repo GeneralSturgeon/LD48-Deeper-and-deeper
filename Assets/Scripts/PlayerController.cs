@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour
     public GameObject beamCollider;
     private GameObject currentBeamCollider;
     private bool isAlive = true;
+    public AudioSource laserSound;
+    public AudioSource beamSound;
+    public AudioSource noEnergySound;
+    public AudioSource crashSound;
 
     private void Start()
     {
@@ -69,6 +73,10 @@ public class PlayerController : MonoBehaviour
                 {
                     GameController.instance.UseEnergy(fireEnergyCost);
                     Fire();
+                    laserSound.Play();
+                } else
+                {
+                    noEnergySound.Play();
                 }
 
             }
@@ -79,6 +87,10 @@ public class PlayerController : MonoBehaviour
                 {
                     InitializeBeam();
                     GameController.instance.energyRegen = 0f;
+                    beamSound.Play();
+                } else
+                {
+                    noEnergySound.Play();
                 }
             }
 
@@ -90,6 +102,7 @@ public class PlayerController : MonoBehaviour
                 } else
                 {
                     DestroyBeam();
+                    noEnergySound.Play();
                 }
                 
             }
@@ -106,7 +119,6 @@ public class PlayerController : MonoBehaviour
     {
         var dir = ((new Vector3(horizontal, 0f, 0f) + new Vector3(0f, vertical, 0f)) * sideSpeed + new Vector3(0f, 0f, speed * speedbreak)) * Time.fixedDeltaTime;
         rb.AddForce(dir);
-        Debug.Log(speedbreak);
     }
 
 
@@ -129,6 +141,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(dir * kickbackForce);
             CameraShake.instance.Shake(0.2f, 0.04f, 1f);
             GameController.instance.TakeDamage(damageFromWall);
+            crashSound.Play();
             if(other.gameObject.GetComponent<Destructable>() != null)
             {
                 other.gameObject.GetComponent<Destructable>().Hit();
@@ -216,7 +229,10 @@ public class PlayerController : MonoBehaviour
         {
             GameController.instance.energyRegen = 0.05f;
         }
-        
+
+        beamSound.Stop();
+       
+
     }
 
     public void Death()

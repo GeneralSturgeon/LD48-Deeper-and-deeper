@@ -10,6 +10,9 @@ public class Gemstone : MonoBehaviour
     public float moneyToAdd = 10f;
     public float lifeToAdd = 10f;
     public float energyToAdd = 10f;
+    public AudioSource pickupSound;
+    public SphereCollider coll;
+    public SpriteRenderer rend;
 
     private void Start()
     {
@@ -40,7 +43,10 @@ public class Gemstone : MonoBehaviour
             GameController.instance.Heal(moneyToAdd);
         }
 
-        Destroy(gameObject);
+        rend.enabled = false;
+        coll.enabled = false;
+        pickupSound.Play();
+        Destroy(gameObject, 1.5f);
     }
 }
 

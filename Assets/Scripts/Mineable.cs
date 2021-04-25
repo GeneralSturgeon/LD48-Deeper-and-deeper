@@ -12,6 +12,7 @@ public class Mineable : MonoBehaviour
     public float lifeToAdd = 10f;
     public float energyToAdd = 10f;
     private GameObject currentPS;
+    public AudioSource beamHitSound;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,6 +20,7 @@ public class Mineable : MonoBehaviour
         {
             currentPS = Instantiate(minePS, other.gameObject.transform.position, Quaternion.identity);
             currentPS.transform.SetParent(other.transform);
+            beamHitSound.Play();
         }
     }
 
@@ -41,7 +43,7 @@ public class Mineable : MonoBehaviour
                 GameController.instance.Heal(moneyToAdd * Time.deltaTime);
             }
 
-        }
+        } 
     }
 
     private void OnTriggerExit(Collider other)
@@ -49,10 +51,19 @@ public class Mineable : MonoBehaviour
         if (other.gameObject.CompareTag("BeamCollider"))
         {
             
-            if(currentPS != null)
+            if (currentPS != null)
             {
                 Destroy(currentPS);
             }
+        }
+        beamHitSound.Stop();
+    }
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonUp(1))
+        {
+            beamHitSound.Stop();
         }
     }
 }
