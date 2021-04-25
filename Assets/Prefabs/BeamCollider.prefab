@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 131002850299791943}
   - component: {fileID: 131002850299791994}
   - component: {fileID: 5163849729817567113}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: BeamCollider
   m_TagString: BeamCollider
   m_Icon: {fileID: 0}

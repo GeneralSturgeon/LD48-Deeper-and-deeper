@@ -130,7 +130,7 @@ MonoBehaviour:
   addMoney: 1
   addEnergy: 0
   minePS: {fileID: 7909289510828463264, guid: 385210c87d7f9924ba6923fb6451e82f, type: 3}
-  moneyToAdd: 100
+  moneyToAdd: 200
   lifeToAdd: 0
   energyToAdd: 0
   beamHitSound: {fileID: -5165074312801523482}

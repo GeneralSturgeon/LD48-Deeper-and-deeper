@@ -29,6 +29,8 @@ public class GameController : MonoBehaviour
     public bool tutorialOn = true;
     private int tutorialTicks = 0;
     public AudioSource[] mouseSounds;
+    public AudioSource dyingSound;
+    public Animator healthFlashanim;
 
 
     private void Awake()
@@ -60,12 +62,18 @@ public class GameController : MonoBehaviour
         {
             FindObjectOfType<PanelController>().Fade(0);
         }
+
     }
 
     public void TakeDamage(int dmg)
     {
         currentHealth -= dmg;
         healthSlider.value = currentHealth;
+        if(currentHealth < maxHealth/4)
+        {
+            dyingSound.Play();
+            healthFlashanim.SetBool("IsFlashing", true);
+        }
         if(currentHealth <= 0)
         {
             Death();
@@ -75,7 +83,14 @@ public class GameController : MonoBehaviour
     public void Heal (float heal)
     {
         currentHealth += heal;
-        if(currentHealth > maxHealth)
+
+        if (currentHealth > maxHealth / 4)
+        {
+            dyingSound.Stop();
+            healthFlashanim.SetBool("IsFlashing", false);
+        }
+
+        if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
@@ -202,6 +217,8 @@ public class GameController : MonoBehaviour
             if (tutorialTicks == 1100)
             {
                 screenAnim.SetBool("enabled", false);
+                tutorialOn = false;
+                FindObjectOfType<CommentController>().EnableComments();
             }
         }
         
@@ -218,17 +235,27 @@ public class GameController : MonoBehaviour
 
     private void InitTutorial()
     {
-        screenAnim.SetBool("enabled", true);
+        
 
         if(tutorialOn)
         {
+            screenAnim.SetBool("enabled", true);
             interactionText.text = TextHolder.instance.GetTutorialString(0);
             mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
-        } else
-        {
-            interactionText.text = TextHolder.instance.GetRandomWittynessString();
-            mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
         }
+
+    }
+
+    public void ActivateScreen(string comment)
+    {
+        screenAnim.SetBool("enabled", true);
+        interactionText.text = comment;
+        mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
+    }
+
+    public void DeactivateScreen()
+    {
+        screenAnim.SetBool("enabled", false);
     }
 }
 
