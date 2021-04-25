@@ -8,7 +8,7 @@ public class PanelController : MonoBehaviour
 
     public Image coverImg;
 
-    private float fadeTime = 1f;
+    public float fadeTime = 1f;
     public Color fadeOutColor;
     private Color origColor;
     private float tick = 0f;
@@ -36,19 +36,19 @@ public class PanelController : MonoBehaviour
     {
         if(isFadingOut)
         {
-            tick += Time.deltaTime/2;
+            tick += Time.deltaTime;
             Debug.Log(tick);
-            coverImg.color = Color.Lerp(origColor, fadeOutColor, tick);
+            coverImg.color = Color.Lerp(origColor, fadeOutColor, tick * (1 / fadeTime));
             if (tick >= fadeTime)
             {
-                Debug.Log("next Scene");
+                Manager.instance.GoToScene(nextSceneIndex);
             }
         }
 
         if(isFadingIn)
         {
-            tickIn += Time.deltaTime / 2;
-            coverImg.color = Color.Lerp(fadeOutColor, fadeInColor, tickIn);
+            tickIn += Time.deltaTime;
+            coverImg.color = Color.Lerp(fadeOutColor, fadeInColor, tickIn * (1/fadeTime));
             if (tickIn >= fadeTime)
             {
                 isFadingIn = false;

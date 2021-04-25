@@ -46,11 +46,20 @@ public class GameController : MonoBehaviour
         currentEnergy = maxEnergy;
         currentHealth = maxHealth;
         Random.InitState(Mathf.FloorToInt(Time.realtimeSinceStartup));
+        tutorialOn = Manager.instance.tutorialOn;
     }
 
     private void Start()
     {
         InitTutorial();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            FindObjectOfType<PanelController>().Fade(0);
+        }
     }
 
     public void TakeDamage(int dmg)
@@ -118,25 +127,11 @@ public class GameController : MonoBehaviour
         if(FindObjectOfType<PlayerController>() != null)
         {
             distance = FindObjectOfType<PlayerController>().transform.position.z / 14f;
-            distanceText.text = FormatDistance(distance) + "km";
+            distanceText.text = TextHolder.instance.FormatDistance(distance) + "km";
+            Manager.instance.distance = distance;
         }
         
     }
-
-    public string FormatDistance(float distance)
-    {
-        if(distance < 0f)
-        {
-            return string.Format("{0:00}.{1:0}", 0, 0);
-        } else
-        {
-            int kilometers = (int)distance;
-            int meters = (int)(10 * (distance - kilometers));
-            return string.Format("{0:00}.{1:0}", kilometers, meters);
-        }
-        
-    }
-
 
     private void OnTick()
     {
@@ -144,39 +139,45 @@ public class GameController : MonoBehaviour
         if(tutorialOn)
         {
             tutorialTicks++;
-            if(tutorialTicks == 100)
+            if(tutorialTicks == 50)
             {
                 interactionText.text = TextHolder.instance.GetTutorialString(1);
                 mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
-            if (tutorialTicks == 200)
+            if (tutorialTicks == 125)
             {
                 interactionText.text = TextHolder.instance.GetTutorialString(2);
                 mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
-            if (tutorialTicks == 300)
+            if (tutorialTicks == 200)
             {
                 interactionText.text = TextHolder.instance.GetTutorialString(3);
                 mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
-            if (tutorialTicks == 400)
+            if (tutorialTicks == 300)
             {
                 interactionText.text = TextHolder.instance.GetTutorialString(4);
                 mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
-            if (tutorialTicks == 500)
+            if (tutorialTicks == 400)
             {
                 interactionText.text = TextHolder.instance.GetTutorialString(5);
                 mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
-            if (tutorialTicks == 600)
+            if (tutorialTicks == 500)
             {
                 interactionText.text = TextHolder.instance.GetTutorialString(6);
+                mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
+            }
+
+            if (tutorialTicks == 600)
+            {
+                interactionText.text = TextHolder.instance.GetTutorialString(7);
                 mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
@@ -188,13 +189,13 @@ public class GameController : MonoBehaviour
             if (tutorialTicks == 900)
             {
                 screenAnim.SetBool("enabled", true);
-                interactionText.text = TextHolder.instance.GetTutorialString(7);
+                interactionText.text = TextHolder.instance.GetTutorialString(8);
                 mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
             if (tutorialTicks == 1000)
             {
-                interactionText.text = TextHolder.instance.GetTutorialString(8);
+                interactionText.text = TextHolder.instance.GetTutorialString(9);
                 mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
@@ -212,6 +213,7 @@ public class GameController : MonoBehaviour
         currentMoney += money;
         var moneyInt = (int)currentMoney;
         moneyText.text = string.Format("{0:00000000}", moneyInt) + "$";
+        Manager.instance.money = currentMoney;
     }
 
     private void InitTutorial()
@@ -225,6 +227,7 @@ public class GameController : MonoBehaviour
         } else
         {
             interactionText.text = TextHolder.instance.GetRandomWittynessString();
+            mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
         }
     }
 }

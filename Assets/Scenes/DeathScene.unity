@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coverImg: {fileID: 76770652}
+  fadeTime: 1
   fadeOutColor: {r: 0, g: 0, b: 0, a: 1}
   isFadingIn: 1
   fadeInColor: {r: 0, g: 0, b: 0, a: 0}
@@ -840,6 +841,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lenght: 5
   panel: {fileID: 76770654}
+  moneyText: {fileID: 900930964}
+  distanceText: {fileID: 1819900719}
 --- !u!1 &1716527157
 GameObject:
   m_ObjectHideFlags: 0

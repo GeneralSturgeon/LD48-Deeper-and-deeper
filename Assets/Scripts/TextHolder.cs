@@ -19,6 +19,8 @@ public class TextHolder : MonoBehaviour
         {
             instance = this;
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public string GetTutorialString(int index)
@@ -29,5 +31,20 @@ public class TextHolder : MonoBehaviour
     public string GetRandomWittynessString()
     {
         return wittyStrings[Random.Range(0, wittyStrings.Length)];
+    }
+
+    public string FormatDistance(float distance)
+    {
+        if (distance < 0f)
+        {
+            return string.Format("{0:00}.{1:0}", 0, 0);
+        }
+        else
+        {
+            int kilometers = (int)distance;
+            int meters = (int)(10 * (distance - kilometers));
+            return string.Format("{0:00}.{1:0}", kilometers, meters);
+        }
+
     }
 }
