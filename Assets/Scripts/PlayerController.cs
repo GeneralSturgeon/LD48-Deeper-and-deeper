@@ -211,6 +211,7 @@ public class PlayerController : MonoBehaviour
         }
 
         GameController.instance.UseEnergy(beamEnergyCost);
+        CameraShake.instance.Shake(0.2f, 0.04f, 1f);
     }
 
     private void DestroyBeam()

@@ -28,6 +28,8 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI interactionText;
     public bool tutorialOn = true;
     private int tutorialTicks = 0;
+    public AudioSource[] mouseSounds;
+
 
     private void Awake()
     {
@@ -94,7 +96,7 @@ public class GameController : MonoBehaviour
     private void Death()
     {
         FindObjectOfType<PlayerController>().Death();
-        FindObjectOfType<PanelController>().Fade();
+        FindObjectOfType<PanelController>().Fade(2);
     }
 
     private void FixedUpdate()
@@ -145,31 +147,37 @@ public class GameController : MonoBehaviour
             if(tutorialTicks == 100)
             {
                 interactionText.text = TextHolder.instance.GetTutorialString(1);
+                mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
             if (tutorialTicks == 200)
             {
                 interactionText.text = TextHolder.instance.GetTutorialString(2);
+                mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
             if (tutorialTicks == 300)
             {
                 interactionText.text = TextHolder.instance.GetTutorialString(3);
+                mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
             if (tutorialTicks == 400)
             {
                 interactionText.text = TextHolder.instance.GetTutorialString(4);
+                mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
             if (tutorialTicks == 500)
             {
                 interactionText.text = TextHolder.instance.GetTutorialString(5);
+                mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
             if (tutorialTicks == 600)
             {
                 interactionText.text = TextHolder.instance.GetTutorialString(6);
+                mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
             if(tutorialTicks == 700)
@@ -181,11 +189,13 @@ public class GameController : MonoBehaviour
             {
                 screenAnim.SetBool("enabled", true);
                 interactionText.text = TextHolder.instance.GetTutorialString(7);
+                mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
             if (tutorialTicks == 1000)
             {
                 interactionText.text = TextHolder.instance.GetTutorialString(8);
+                mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
             }
 
             if (tutorialTicks == 1100)
@@ -211,9 +221,10 @@ public class GameController : MonoBehaviour
         if(tutorialOn)
         {
             interactionText.text = TextHolder.instance.GetTutorialString(0);
+            mouseSounds[Random.Range(0, mouseSounds.Length)].Play();
         } else
         {
-            interactionText.text = TextHolder.instance.GetTutorialString(0);
+            interactionText.text = TextHolder.instance.GetRandomWittynessString();
         }
     }
 }

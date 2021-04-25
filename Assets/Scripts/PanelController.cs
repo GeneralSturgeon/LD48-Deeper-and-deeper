@@ -9,30 +9,49 @@ public class PanelController : MonoBehaviour
     public Image coverImg;
 
     private float fadeTime = 1f;
-    public Color fadeColor;
-    public Color origColor;
+    public Color fadeOutColor;
+    private Color origColor;
     private float tick = 0f;
-    private bool isFading = false;
+    private bool isFadingOut = false;
+    public bool isFadingIn = true;
+    private float tickIn = 0f;
+    public Color fadeInColor;
+
+    private int nextSceneIndex;
+
+
 
     private void Awake()
     {
         origColor = coverImg.color;
     }
 
-    public void Fade()
+    public void Fade(int nextScene)
     {
-        isFading = true;
+        nextSceneIndex = nextScene;
+        isFadingOut = true;
     }
 
     private void Update()
     {
-        if(isFading)
+        if(isFadingOut)
         {
             tick += Time.deltaTime/2;
-            coverImg.color = Color.Lerp(origColor, fadeColor, tick);
+            Debug.Log(tick);
+            coverImg.color = Color.Lerp(origColor, fadeOutColor, tick);
             if (tick >= fadeTime)
             {
                 Debug.Log("next Scene");
+            }
+        }
+
+        if(isFadingIn)
+        {
+            tickIn += Time.deltaTime / 2;
+            coverImg.color = Color.Lerp(fadeOutColor, fadeInColor, tickIn);
+            if (tickIn >= fadeTime)
+            {
+                isFadingIn = false;
             }
         }
     }
