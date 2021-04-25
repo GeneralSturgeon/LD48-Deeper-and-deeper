@@ -844,6 +844,7 @@ MonoBehaviour:
   moneyText: {fileID: 900930964}
   distanceText: {fileID: 1819900719}
   breadText: {fileID: 2131462682}
+  moneyNeeded: 1000
 --- !u!1 &1716527157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,7 +1082,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 800, y: 50}
+  m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2131462682
 MonoBehaviour:

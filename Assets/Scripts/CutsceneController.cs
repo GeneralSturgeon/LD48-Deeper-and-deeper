@@ -13,7 +13,8 @@ public class CutsceneController : MonoBehaviour
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI distanceText;
     public TextMeshProUGUI breadText;
-    public int moneyNeeded = 100000;
+    public int moneyNeededMed = 10000;
+    public int moneyNeededHigh = 50000;
 
     private void Update()
     {
@@ -30,9 +31,14 @@ public class CutsceneController : MonoBehaviour
         var moneyInt = (int)Manager.instance.money;
         moneyText.text = "Income: " + moneyInt.ToString() + "$";
         distanceText.text = "Depth: " + TextHolder.instance.FormatDistance(Manager.instance.distance) + "km";
-        if(moneyInt > moneyNeeded)
+        if(moneyInt > moneyNeededMed)
         {
             breadText.text = "Well done, Ensign! But you can always do better!";
+        }
+
+        if (moneyInt > moneyNeededHigh)
+        {
+            breadText.text = "Excellent job, Ensign!";
         }
     }
 }

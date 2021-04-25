@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private float speedbreak;
     public float breakAmount = 0.5f;
     public float sideSpeed;
+    private float sideSpeedMultiplier = 1f;
     public float speed;
     public float kickbackForce = 50f;
     public float fireEnergyCost = 1;
@@ -39,10 +40,12 @@ public class PlayerController : MonoBehaviour
         if (GameController.instance.tutorialOn)
         {
             speedbreak = 0.1f;
+            sideSpeedMultiplier = 0.05f;
         }
         else
         {
             speedbreak = 1f;
+            sideSpeedMultiplier = 1f;
         }
     }
     void Update()
@@ -128,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var dir = ((new Vector3(horizontal, 0f, 0f) + new Vector3(0f, vertical, 0f)) * sideSpeed + new Vector3(0f, 0f, speed * speedbreak)) * Time.fixedDeltaTime;
+        var dir = ((new Vector3(horizontal, 0f, 0f) + new Vector3(0f, vertical, 0f)) * sideSpeed * sideSpeedMultiplier + new Vector3(0f, 0f, speed * speedbreak)) * Time.fixedDeltaTime;
         rb.AddForce(dir);
     }
 
@@ -162,6 +165,7 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.CompareTag("TutorialSpeedUp"))
         {
             speedbreak = 1f;
+            sideSpeedMultiplier = 1f;
         }
     }
 

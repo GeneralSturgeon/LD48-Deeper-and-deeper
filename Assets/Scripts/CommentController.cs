@@ -34,7 +34,7 @@ public class CommentController : MonoBehaviour
                 {
                     GameController.instance.ActivateScreen(TextHolder.instance.GetRandomWittynessString());
                     tickComment = 0f;
-                    timeBetweenRemarks = Random.Range(12f, 20f);
+                    timeBetweenRemarks = Random.Range(10f, 15f);
                     showing = true;
 
                 }

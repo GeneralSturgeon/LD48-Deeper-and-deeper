@@ -129,7 +129,7 @@ MonoBehaviour:
   addLife: 0
   addMoney: 1
   addEnergy: 1
-  minePS: {fileID: 7909289510828463264, guid: 385210c87d7f9924ba6923fb6451e82f, type: 3}
+  minePS: {fileID: 7909289510828463264, guid: 409d7d0827d7a394787b1bb16f875f0d, type: 3}
   moneyToAdd: 40
   lifeToAdd: 0
   energyToAdd: 2
